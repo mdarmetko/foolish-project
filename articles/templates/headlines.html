@@ -1,0 +1,9 @@
+
+<div class="block-title">
+        <hr><h2>Read More</h2>
+</div>
+<ul class="two-line-list">
+    {% for headline in headlines %}
+        <li><a href="{% url 'articles:article' headline.url_headline %}">{{ headline.headline }}</a></li>
+    {% endfor %}
+</ul>

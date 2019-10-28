@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "navigation.html" %}
+
+    <div class="container content-inner">
+      <div class="main-col">
+          <section class="jumbo-card card">
+              <div class="card-image">
+                  <a href="{% url 'articles:article' main_article.url_headline %}"><img src="{{ main_article.image_url }}" alt="" class="img-responsive"></a>
+              </div>
+              <div class="card-elements">
+                  <div class="card-header">
+                      <a href="{% url 'articles:article' main_article.url_headline %}"><h3>{{ main_article.headline }}</h3></a>
+                      <p class="author">{{ main_article.author }} | {{ main_article.publish_date }}</p>
+                  </div>
+                  <div class="card-copy">
+                      <p>{{ main_article.promo }}</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+      <div class="cards row">
+          {% for article in other_articles %}
+          <div class="card">
+              <div class="card-image">
+                  <a href="{% url 'articles:article' article.url_headline %}">
+                      <img src="{{ article.image_url }}" alt="">
+                  </a>
+              </div>
+              <div class="card-elements">
+                  <div class="card-header">
+                      <a href="{% url 'articles:article' article.url_headline %}">
+                          <h4>{{ article.headline }}</h4>
+                      </a>
+                      <p class="author">{{ article.author }} | {{ article.publish_date }}</p>
+                  </div>
+                  <div class="card-copy">
+                      <p>{{ article.promo }}</p>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div> 
+  </div>
+{% endblock %}

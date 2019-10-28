@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% include "navigation.html" %}
+
+<div class="container article-content-inner">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="article-header">
+                <header>
+                    <div id="adv_text" class="adv-heading"></div>
+                    <h1>{{ article.headline }}</h1>
+                </header>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <main class="col-sm-7 col-md-8">
+            <div class="author-tagline author-inline">
+                <div class="author-and-date">
+                    <div class="author-byline">
+                        <div class="author-name">{{ article.author }}</div>
+                    </div>
+                    <div class="article-pub-date">
+                        <div class="publication-date">
+                            {{ article.publish_datetime }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="article-body">
+                <div class="article-content">
+                    {% autoescape off %}
+                    {{ article.body }}
+                    {% endautoescape %}
+                </div>
+                <div class="article-disclosure">
+                    {% autoescape off %}
+                    {{ article.disclosure }}
+                    {% endautoescape %}
+                </div>
+            </section>
+            <section class="article-comments">
+                    <div class="block-title">
+                        <hr><h2>Comments</h2>
+                    </div>
+                    <ul id="comment-list" class="two-line-list">
+                        {% if not article.comments %}
+                            <li>No comments yet!</li>
+                        {% else %}
+                            {% for comment in article.comments %}
+                                <li>{{ comment }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    <label for="comment-input">Add a comment:</label>
+                    <textarea id="comment-input" rows="2"></textarea>
+                    <button id="comment-btn" type="button" onclick="addComment('{{ article.uuid }}');">Post comment</button>
+            </section>
+        </main>
+        <aside class="col-sm-5 col-md-4 p-l">
+            <section class="related-tickers">
+                {% include "quotes.html" with quotes=quotes %}
+            </section>
+            <section class="read-more-section">
+                {% include "headlines.html" with headlines=latest_headlines %}
+            </section>
+        </aside>
+    </div>
+</div>
+{% endblock %}

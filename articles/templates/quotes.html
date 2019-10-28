@@ -1,0 +1,31 @@
+<div class="block-title">
+    <hr><h2>Stocks</h2>
+</div>
+<ul id="quote-list" class="list-unstyled">
+{% for quote in quotes %}
+<li class="ticker-row">
+    <div>
+        <h3>{{ quote.CompanyName}}</h3>
+        <h4>
+            <span class="ticker">
+                <a title="{{ quote.CompanyName }} Stock Quote" href="#">
+                    {{ quote.Exchange }}:<span class="symbol">{{ quote.Symbol}}</span>
+                </a>
+            </span>
+        </h4>
+        <aside class="price-quote-container">
+            <h4 class="current-price">
+                ${{ quote.CurrentPrice.Amount }}
+            </h4>
+            <h4 class="price-change-amount {% if quote.Change.Amount > 0 %} price-pos {% elif quote.Change.Amount < 0 %} price-neg {% endif %}">
+                ${{ quote.Change.Amount }}
+            </h4>
+            <h4 class="price-change-percent {% if quote.Change.Amount > 0 %} price-pos {% elif quote.Change.Amount < 0 %} price-neg {% endif %}">
+                ({{ quote.change_percent }}%)
+            </h4>
+        </aside>
+    </div>
+</li>
+{% endfor %}
+</ul>
+<button id="shuffle" type="button" onclick="shuffleList('quote-list');">Shuffle quotes</button>
