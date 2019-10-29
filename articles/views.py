@@ -67,7 +67,7 @@ class ArticleView(TemplateView):
             comments = [c.comment_text for c in Comment.objects.filter(article_uuid=article['uuid'])]
             context['article'] = {'headline': article['headline'],
                                     'author': article['byline'],
-                                    'publish_datetime': parse(article['publish_at']).strftime('%B %-d, %Y at %-I:%M%P'),
+                                    'publish_datetime': parse(article['publish_at']).strftime('%B %-d, %Y at %-I:%M%p'),
                                     'body': article['body'].replace('{%sfr%}',''),
                                     'disclosure': article['disclosure'],
                                     'uuid': article['uuid'],

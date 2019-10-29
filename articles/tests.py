@@ -68,7 +68,7 @@ class ArticleViewTests(TestCase):
         article = response.context_data['article']
         self.assertEqual(article, {'headline': "Here's Why Barrrick Gold Plunged 10% in October",
                                    'author': 'Scott Levine',
-                                   'publish_datetime': 'November 10, 2017 at 3:04P',
+                                   'publish_datetime': 'November 10, 2017 at 3:04PM',
                                    'body': article['body'],
                                    'disclosure': article['disclosure'],
                                    'uuid': 'a7acd8c8-c5ce-11e7-9fa6-0050569d4be0',
